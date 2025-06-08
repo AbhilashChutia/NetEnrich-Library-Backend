@@ -1,4 +1,4 @@
-import smtplib # Make sure this is imported
+import smtplib
 from email.mime.text import MIMEText
 from datetime import date, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
