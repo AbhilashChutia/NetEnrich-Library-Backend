@@ -11,7 +11,6 @@ book tracking, student management, and automated email reminders.
 -   Automated email reminders for overdue books
 -   RESTful API endpoints
 -   Database integration
--   Email notifications using Mailtrap.io
 
 ## Tech Stack
 
@@ -30,7 +29,6 @@ book tracking, student management, and automated email reminders.
 
 ### Email Service
 
--   **Mailtrap.io**: Email testing and delivery service
 -   **SMTP**: For sending automated email reminders
 
 ## Project Structure
@@ -69,7 +67,6 @@ library/
 
 -   Python 3.8 or higher
 -   PostgreSQL database
--   Mailtrap.io account (for email testing)
 
 ### Installation
 
@@ -150,8 +147,8 @@ The system automatically sends email reminders for:
 -   Books due in 5 days
 -   Overdue books
 
-Email configuration uses Mailtrap.io for testing. In production, update the
-email settings to use your preferred email service provider.
+In production, update the email settings to use your preferred email service
+provider.
 
 ## Database Schema
 
