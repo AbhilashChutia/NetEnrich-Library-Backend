@@ -29,24 +29,39 @@ A modern library management system built with FastAPI and SQLAlchemy, featuring 
 - **Mailtrap.io**: Email testing and delivery service
 - **SMTP**: For sending automated email reminders
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 library/
-├── alembic/              # Database migrations
-├── models/              # SQLAlchemy models
-│   ├── book.py         # Book model
-│   ├── student.py      # Student model
-│   └── issue.py        # Book issue model
+├── api/                    # API endpoints
+│   ├── v1/                # API version 1
+│   │   ├── books.py       # Book endpoints
+│   │   ├── students.py    # Student endpoints
+│   │   └── issues.py      # Book issue endpoints
+│   └── __init__.py
+├── models/                # SQLAlchemy models
+│   ├── book.py           # Book model
+│   ├── student.py        # Student model
+│   └── issue.py          # Book issue model
+├── schemas/              # Pydantic models/schemas
+│   ├── book.py          # Book schemas
+│   ├── student.py       # Student schemas
+│   └── issue.py         # Issue schemas
+├── crud/                # Database operations
+│   ├── book.py         # Book CRUD operations
+│   ├── student.py      # Student CRUD operations
+│   └── issue.py        # Issue CRUD operations
 ├── services/           # Business logic
 │   └── reminder_service.py  # Email reminder service
-├── config.py           # Configuration settings
-├── database.py         # Database connection
-├── main.py            # FastAPI application
-└── requirements.txt    # Project dependencies
+├── config.py          # Configuration settings
+├── database.py        # Database connection
+├── main.py           # FastAPI application
+├── send.py           # Email sending utility
+├── test_email.py     # Email testing script
+└── requirements.txt   # Project dependencies
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -93,7 +108,7 @@ alembic upgrade head
 uvicorn main:app --reload
 ```
 
-## 📚 API Endpoints
+## API Endpoints
 
 ### Books
 - `GET /books`: List all books
