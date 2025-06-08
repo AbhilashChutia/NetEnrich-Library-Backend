@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
     print("Database initialized.")
 
     print("Starting scheduler...")
-    scheduler.add_job(check_and_send_reminders, 'interval', hours=24)
+    scheduler.add_job(check_and_send_reminders, 'interval', houes=24)
     scheduler.start()
     print("Scheduler started.")
 
