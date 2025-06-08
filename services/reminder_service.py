@@ -1,4 +1,4 @@
-import smtplib
+import smtplib # Make sure this is imported
 from email.mime.text import MIMEText
 from datetime import date, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,7 +7,7 @@ from sqlalchemy import select, and_
 from models.issue import BookIssue
 from models.student import Student
 from models.book import Book
-from database import get_session 
+from database import get_session
 from config import EMAIL_HOST, EMAIL_PORT, EMAIL_USERNAME, EMAIL_PASSWORD, EMAIL_FROM_ADDRESS
 import asyncio
 
@@ -23,7 +23,7 @@ async def send_email(to_email: str, subject: str, body: str):
 
     try:
         with smtplib.SMTP(EMAIL_HOST, EMAIL_PORT) as server:
-            server.starttls()
+            server.starttls() 
             server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
             server.send_message(msg)
         print(f"Email sent to {to_email} for subject: {subject}")
