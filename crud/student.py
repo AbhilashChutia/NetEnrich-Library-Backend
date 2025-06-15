@@ -27,13 +27,10 @@ class CRUDStudent:
 
     async def get_student_by_identifier(self, db: AsyncSession, identifier: str) -> Optional[Student]:
         try:
-            # Try to convert identifier to UUID
             student_id = UUID(identifier)
-            # If successful, search by UUID
             result = await db.execute(select(Student).filter(Student.id == student_id))
             return result.scalars().first()
         except ValueError:
-            # If not a valid UUID, search by other fields
             result = await db.execute(
                 select(Student).filter(
                     or_(

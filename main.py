@@ -15,7 +15,10 @@ async def lifespan(app: FastAPI):
     print("Database initialized.")
 
     print("Starting scheduler...")
-    scheduler.add_job(check_and_send_reminders, 'interval', hours=24)
+    # Schedule to run at 10 AM every day
+    scheduler.add_job(check_and_send_reminders, 'cron', hour=10, minute=0)
+    # scheduler.add_job(check_and_send_reminders, 'interval', hours=24)
+
     scheduler.start()
     print("Scheduler started.")
 
@@ -26,7 +29,7 @@ async def lifespan(app: FastAPI):
     print("Scheduler shut down.")
 
 app = FastAPI(
-    title="NetEnrich ollege Library Management System",
+    title="NetEnrich College Library Management System",
     description="Backend system for managing books, students, and book issuance.",
     version="1.0.0",
     docs_url="/docs",

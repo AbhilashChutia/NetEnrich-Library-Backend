@@ -1,29 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select # Import 'select' for SQLAlchemy queries
+from sqlalchemy import select 
 from typing import List
 from uuid import UUID
 from datetime import date
 
 from database import get_session
-from schemas.issue import IssueCreate, IssueReturn, Issue # Pydantic schemas for request/response
+from schemas.issue import IssueCreate, IssueReturn, Issue 
 from schemas.student import IssuedBookDetail
 from crud.issue import issue_crud
 from crud.book import book_crud
 from crud.student import student_crud
-from models.issue import BookIssue # Import your SQLAlchemy ORM model for issues
+from models.issue import BookIssue 
 
 router = APIRouter()
 
 @router.post("/", response_model=Issue, status_code=status.HTTP_201_CREATED)
 async def issue_book_to_student(issue_in: IssueCreate, db: AsyncSession = Depends(get_session)):
-    """
-    Issues a book to a student.
-    - Requires `book_id`, `student_id`, and `expected_return_date`.
-    - Decrements available copies of the book.
-    - Raises 404 if book or student not found.
-    - Raises 400 if no copies are available.
-    """
     book = await book_crud.get_book(db, issue_in.book_id)
     if not book:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
@@ -67,12 +60,6 @@ async def return_issued_book(
 
 @router.get("/student/{student_id}", response_model=List[IssuedBookDetail])
 async def list_books_issued_to_student(student_id: UUID, db: AsyncSession = Depends(get_session)):
-    """
-    Retrieves all books currently issued to a specific student.
-    - Requires a `student_id`.
-    - Returns a list of `IssuedBookDetail` objects, including overdue status.
-    - Raises 404 if the student is not found.
-    """
     student = await student_crud.get_student(db, student_id)
     if not student:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Student not found")
