@@ -58,6 +58,11 @@ async def return_issued_book(
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Failed to return book")
     return returned_issue
 
+@router.get("/active", response_model=List[Issue])
+async def list_all_active_issues(db: AsyncSession = Depends(get_session)):
+    active_issues = await issue_crud.get_all_active_issues(db=db)
+    return active_issues
+
 @router.get("/student/{student_id}", response_model=List[IssuedBookDetail])
 async def list_books_issued_to_student(student_id: UUID, db: AsyncSession = Depends(get_session)):
     student = await student_crud.get_student(db, student_id)
@@ -66,3 +71,6 @@ async def list_books_issued_to_student(student_id: UUID, db: AsyncSession = Depe
     
     issued_books = await issue_crud.get_issued_books_for_student(db=db, student_id=student_id)
     return issued_books
+
+
+

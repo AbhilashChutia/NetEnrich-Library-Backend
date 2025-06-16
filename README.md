@@ -35,30 +35,30 @@ book tracking, student management, and automated email reminders.
 
 ```
 library/
-├── api/                    # API endpoints
-│   ├── v1/                # API version 1
-│   │   ├── books.py       # Book endpoints
-│   │   ├── students.py    # Student endpoints
-│   │   └── issues.py      # Book issue endpoints
+├── api/
+│   ├── v1/
+│   │   ├── books.py
+│   │   ├── students.py
+│   │   └── issues.py
 │   └── __init__.py
-├── models/                # SQLAlchemy models
-│   ├── book.py           # Book model
-│   ├── student.py        # Student model
-│   └── issue.py          # Book issue model
-├── schemas/              # Pydantic models/schemas
-│   ├── book.py          # Book schemas
-│   ├── student.py       # Student schemas
-│   └── issue.py         # Issue schemas
-├── crud/                # Database operations
-│   ├── book.py         # Book CRUD operations
-│   ├── student.py      # Student CRUD operations
-│   └── issue.py        # Issue CRUD operations
-├── services/           # Business logic
-│   └── reminder_service.py  # Email reminder service
-├── config.py          # Configuration settings
-├── database.py        # Database connection
-├── main.py           # FastAPI application
-└── requirements.txt   # Project dependencies
+├── models/
+│   ├── book.py
+│   ├── student.py
+│   └── issue.py
+├── schemas/
+│   ├── book.py
+│   ├── student.py
+│   └── issue.py
+├── crud/
+│   ├── book.py
+│   ├── student.py
+│   └── issue.py
+├── services/
+│   └── reminder_service.py
+├── config.py
+├── database.py
+├── main.py
+└── requirements.txt
 ```
 
 ## Getting Started
@@ -121,24 +121,24 @@ uvicorn main:app --reload
 
 -   `GET /books`: List all books
 -   `POST /books`: Add a new book
--   `GET /books/{id}`: Get book details
--   `PUT /books/{id}`: Update book
--   `DELETE /books/{id}`: Delete book
+-   `GET /books/{book_id}`: Get book details
+-   `PUT /books/{book_id}`: Update book
+-   `DELETE /books/{book_id}`: Delete book
 
 ### Students
 
 -   `GET /students`: List all students
 -   `POST /students`: Add a new student
--   `GET /students/{id}`: Get student details
--   `PUT /students/{id}`: Update student
--   `DELETE /students/{id}`: Delete student
+-   `GET /students/{student_id}`: Get student details
+-   `PUT /students/{student_id}`: Update student
+-   `DELETE /students/{student_id}`: Delete student
 
 ### Book Issues
 
 -   `POST /issues`: Issue a book
--   `PUT /issues/{id}/return`: Return a book
--   `GET /issues`: List all book issues
--   `GET /issues/{id}`: Get issue details
+-   `PUT /issues/{issue_id}/return`: Return a book
+-   `GET /issues/active`: List all book issues
+-   `GET /issues/{issue_id}`: Get issue details
 
 ## Email Reminders
 
